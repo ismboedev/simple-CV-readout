@@ -1,4 +1,4 @@
-#!/bin/python3
+#!/usr/bin/python3
 # =========================================================================== #
 
 
@@ -43,14 +43,19 @@ def end():
     amplitude = float(E1.get())
     mainWindow.quit()
 
+def closeevent():
+    mainWindow.quit()
+    sys.exit()
+
 
 # =========================================================================== #
 # =================== start mainWindow with Buttons ========================= #
 
 
-mainWindow = tkinter.Tk()
+mainWindow = tkinter.Tk( className = 'simple-CV-readout' )
 mainWindow.wm_title( "simple-CV-readout" )
-#mainWindow.geometry( "190x90" )
+mainWindow.protocol( "WM_DELETE_WINDOW", closeevent )
+#mainWindow.geometry( "208x128" )
 
 
 F1 = tkinter.Frame( mainWindow )
@@ -59,13 +64,13 @@ F3 = tkinter.Frame( mainWindow )
 F4 = tkinter.Frame( mainWindow )
 
 
-B1 = tkinter.Button( F1, text = "Data File", width = 10, 
+B1 = tkinter.Button( F1, text = "Data File", width = 15, 
         command = selectdata )
 
-B2 = tkinter.Button( F1, text = "History File", width = 10,
+B2 = tkinter.Button( F1, text = "History File", width = 15,
         command = selecthistory )
 
-B3 = tkinter.Button( F3, text = "Calculate\n& Exit", width = 10,
+B3 = tkinter.Button( F3, text = "Calculate & \nExit", width = 15,
         command = end )
 
 
@@ -83,9 +88,9 @@ E1.insert(0, "0.01")
 
 # =========================================================================== #
 
-F1.pack( fill = tkinter.BOTH )
-F2.pack( fill = tkinter.BOTH )
-F3.pack( fill = tkinter.BOTH )
+F1.pack( padx = 20, pady = 10 )
+F2.pack( padx = 0, pady = 0 )
+F3.pack( padx = 0, pady = 10 )
 
 
 B1.pack( side = tkinter.LEFT )
@@ -95,7 +100,7 @@ L2.pack( side = tkinter.LEFT )
 L3.pack( side = tkinter.RIGHT )
 E1.pack( side = tkinter.RIGHT )
 
-B3.pack( side = tkinter.RIGHT )
+B3.pack( side = tkinter.BOTTOM )
 
 
 # start the loop
@@ -219,7 +224,7 @@ for i in range( 0, num_chunks+1 ):
         os.makedirs( path + "CV_output" )
 
 
-    filename = "CV_chunk_" + str(i) + "_" + names[i] + ".dat"
+    filename = "CV_chunk" + str(i) + "_" + names[i] + ".dat"
     
     output = open( path + "CV_output/" + filename, mode='w' )
 
