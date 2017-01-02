@@ -37,10 +37,20 @@ def selecthistory():
     historyfilename = askhistoryfilename
 
 
+def checknumber(amp):
+    try:
+        float(amp)
+        return True
+    except ValueError:
+        return False
+
+
 # end the window
 def end():
     global amplitude
-    amplitude = float(E1.get())
+    if not checknumber(E1.get()):
+        alert( "Can't convert amplitude into a floating point number" )
+    amplitude = float( E1.get() ) / 1000
     mainWindow.quit()
 
 def closeevent():
@@ -61,7 +71,6 @@ mainWindow.protocol( "WM_DELETE_WINDOW", closeevent )
 F1 = tkinter.Frame( mainWindow )
 F2 = tkinter.Frame( mainWindow )
 F3 = tkinter.Frame( mainWindow )
-F4 = tkinter.Frame( mainWindow )
 
 
 B1 = tkinter.Button( F1, text = "Data File", width = 15, 
@@ -75,15 +84,15 @@ B3 = tkinter.Button( F3, text = "Calculate & \nExit", width = 15,
 
 
 
-L1 = tkinter.Label( mainWindow, text = "Select your Files below:" )
+#L1 = tkinter.Label( mainWindow, text = "Select your Files below:" )
 
 L2 = tkinter.Label( F2, text = "Amplitude:" )
-L3 = tkinter.Label( F2, text = "A" )
+L3 = tkinter.Label( F2, text = "mV" )
 
 
 E1 = tkinter.Entry ( F2, width = 5)
 
-E1.insert(0, "0.01")
+E1.insert(0, "10.0")
 
 
 # =========================================================================== #
@@ -121,7 +130,7 @@ if not 'cvfilename' in globals():
 
 # if calculate is pressed but the file selection was aborted:
 if ( cvfilename == "" ) or ( cvfilename == () ):
-    alert( "NO! Try not! DO or DO NOT,\nThere is no try." ) 
+    alert( "DO or DO NOT,\nThere is no try." ) 
     sys.exit( "no data file selected" )
 
 
@@ -131,7 +140,7 @@ if not 'historyfilename' in globals():
     sys.exit( "no history file selected" )
 
 if ( historyfilename == "" ) or ( historyfilename == () ):
-    alert( "if you forget your history, you can't know your future (data)!" )
+    alert( "If you forget your history, you can't know your future (data)!" )
     sys.exit( "no history file selected" )
 
 
