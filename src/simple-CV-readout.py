@@ -174,6 +174,13 @@ names = []
 for g in range ( 0, num_chunks+1 ):
     names.append( history_row[g+1].split(';')[3] )
 
+    
+# =========================================================================== #
+# ==================== error check of reserved characters =================== #
+
+
+
+
 
 # =========================================================================== #
 # =========================== read data path ================================ #
@@ -232,19 +239,22 @@ for i in range( 0, num_chunks+1 ):
     if not os.path.exists( path + "CV_output" ):
         os.makedirs( path + "CV_output" )
 
-
+    
     filename = "CV_chunk" + str(i) + "_" + names[i] + ".dat"
     
-    output = open( path + "CV_output/" + filename, mode='w' )
+    try:
+        output = open( path + "CV_output/" + filename, mode='w' )
 
-    output.write( "voltage\t" + "capacitance\t" + "frequency\t" + "r\t" + "phase\n" )
-    output.write( "V\t" + "F\t" + "Hz\t" + "A\t" + "°\n" )
+        output.write( "voltage\t" + "capacitance\t" + "frequency\t" + "r\t" + "phase\n" )
+        output.write( "V\t" + "F\t" + "Hz\t" + "A\t" + "°\n" )
+        
+        for l in range ( 0, size ):
+            output.write( grid[l] + "\t" + capacitance[l] + "\t" + freq[l] + "\t" +
+                    r[l] + "\t" + phase[l] + "\n" )
     
-    for l in range ( 0, size ):
-        output.write( grid[l] + "\t" + capacitance[l] + "\t" + freq[l] + "\t" +
-                r[l] + "\t" + phase[l] + "\n" )
-
-    output.close()
+        output.close()
+    except EnvironmentError:
+        alert( names[i] + " is not valid filename!" )
 
 
 # =========================================================================== #

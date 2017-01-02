@@ -1,6 +1,6 @@
 # simple-CV-readout
 
-Simple tool for capacitance-voltage measurements with a Zurich Lock-In-Amplifier.
+Simple tool for analyzing output data of capacitance-voltage measurements with a Zurich Lock-In-Amplifier.
 
 ***
 
@@ -12,10 +12,10 @@ amplitude and creates a directory with a `CV_chunk1_my_own_measurement_name.dat`
 ## Usage  
 You have to make sure not to use any reserved character in your `my_own_measurement_name`, because it is used in the filenames.
 Start the script, or the provided binaries and select your files. Enter an amplitude or keep the default one.  
-By pressing *Calculate & Exit* the tool first closes the window and calculates the capacitance afterwards.  
+By pressing *Calculate & Exit* the tool closes the window first and calculates the capacitance afterwards.  
 
-You can then import the files in your desired graphing program
+You can then import the files in your desired graphing program.
 
 ***
 
-Thanks go to my colleague _Carlo S._ for his contributions.
+Thanks go to my colleague Pepe85 for his contributions.
