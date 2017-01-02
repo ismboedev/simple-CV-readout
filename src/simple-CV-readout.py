@@ -6,7 +6,7 @@
 # ======================= import needed modules ============================= #
 
 import math         # for the number pi
-import os           # for path check
+import os           # for path
 import sys          # for exit
 # import tkinter modules for GUI
 import tkinter
@@ -84,10 +84,9 @@ B3 = tkinter.Button( F3, text = "Calculate & \nExit", width = 15,
 
 
 
-#L1 = tkinter.Label( mainWindow, text = "Select your Files below:" )
+L1 = tkinter.Label( F2, text = "Amplitude:" )
 
-L2 = tkinter.Label( F2, text = "Amplitude:" )
-L3 = tkinter.Label( F2, text = "mV" )
+L2 = tkinter.Label( F2, text = "mV" )
 
 
 E1 = tkinter.Entry ( F2, width = 5)
@@ -105,8 +104,8 @@ F3.pack( padx = 0, pady = 10 )
 B1.pack( side = tkinter.LEFT )
 B2.pack( side = tkinter.LEFT )
 
-L2.pack( side = tkinter.LEFT )
-L3.pack( side = tkinter.RIGHT )
+L1.pack( side = tkinter.LEFT )
+L2.pack( side = tkinter.RIGHT )
 E1.pack( side = tkinter.RIGHT )
 
 B3.pack( side = tkinter.BOTTOM )
@@ -176,28 +175,10 @@ for g in range ( 0, num_chunks+1 ):
 
     
 # =========================================================================== #
-# ==================== error check of reserved characters =================== #
-
-
-
-
-
-# =========================================================================== #
 # =========================== read data path ================================ #
 
 
-letter = 0
-index = 0
-size = 0
-path = ''
-for h in reversed( cvfilename ):
-    if h == '/':
-        letter += 1
-        size = len( cvfilename ) - index
-        for x in range( size ):
-            path = path + cvfilename[x]
-        break
-    index += 1
+path = os.path.dirname( cvfilename ) + "/"
 
 
 # =========================================================================== #
