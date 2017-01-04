@@ -1,4 +1,4 @@
-# simple-CV-readout
+# simple-CV-readout <img src="https://github.com/ismboedev/simple-CV-readout/blob/master/src/icon.png" width="42" align="left"> 
 
 Simple tool for analyzing output data of capacitance-voltage measurements with a Zurich Lock-In-Amplifier.
 
