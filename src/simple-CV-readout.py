@@ -227,7 +227,7 @@ for i in range( 0, num_chunks+1 ):
         output = open( path + "CV_output/" + filename, mode='w' )
 
         output.write( "voltage\t" + "capacitance\t" + "frequency\t" + "r\t" + "phase\n" )
-        output.write( "V\t" + "F\t" + "Hz\t" + "A\t" + "°\n" )
+        output.write( "V\t" + "F\t" + "Hz\t" + "A\t" + "rad\n" )
         
         for l in range ( 0, size ):
             output.write( grid[l] + "\t" + capacitance[l] + "\t" + freq[l] + "\t" +
